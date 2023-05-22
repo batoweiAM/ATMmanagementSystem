@@ -42,8 +42,11 @@ namespace ATMManagementSystem
             SqlDataAdapter sda = new SqlDataAdapter("select count(*) from AccountTbl where Accnum='"+AccNumTb.Text+"' and PIN = "+PinTb.Text+"", Con);
             DataTable dt = new DataTable();
             sda.Fill(dt);
+            Con.Close();
+
             if (dt.Rows[0][0].ToString() == "1")
             {
+                Con.Open();
                 AccNumber = AccNumTb.Text;
                 HOME home = new HOME();
                 home.Show();
